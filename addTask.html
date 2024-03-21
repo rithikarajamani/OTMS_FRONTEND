@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title >Task Management</title>
+    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
+   <link rel="stylesheet" href="addTask.css">
+    <style>
+        /* Custom CSS for sidebar popup */
+        .sidebar {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            right: 0;
+            background-color: #f3f3f3;
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 60px;
+        }
+        
+        .sidebar-content {
+            padding: 16px;
+        }
+        
+        .sidebar a {
+            padding: 10px 10px;
+            text-decoration: none;
+            font-size: 25px;
+            color: #818181;
+            display: block;
+            transition: 0.3s;
+        }
+        
+        .sidebar a:hover {
+            color: #f1f1f1;
+        }
+        
+        .sidebar .closebtn {
+            position: absolute;
+            top: 0;
+            right: 25px;
+            font-size: 36px;
+            margin-left: 50px;
+        }
+        
+        @media screen and (max-height: 450px) {
+            .sidebar {padding-top: 15px;}
+            .sidebar a {font-size: 18px;}
+        }
+    </style>
+</head>
+<body>
+    <div id="design-top"></div>
+    <div id="design-nav"></div>
+    <div class="container" style="position: relative;">
+        <h1 class="heading">Task Management</h1>
+        <button type="button"  class="addTask"onclick="openSidebar()">Add Task</button>
+    </div>
+    <table id="customers" class="table table-bordered">
+        <thead>
+            <tr>
+                <th>User Id</th>
+                <th>Task Title</th>
+                <th>Task Description</th>
+                <th>Priority</th>
+                <th>Task Status</th>
+                <th>Planned Start Date</th>
+                <th>Planned Completion Date</th>
+                <th>Actual Start Date</th>
+                <th>Actual Completion Date</th>
+                <th>Active Status</th>
+                <th>Created Date</th>
+                <th>Updated Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Table rows will be dynamically added here -->
+        </tbody>
+    </table>
+</form>
+</div>
+
+<script type="text/javascript">
+function addTask() {
+    var userId = document.getElementById('userId').value;
+    var taskTitle = document.getElementById('taskTitle').value;
+    var taskDescription = document.getElementById('taskDescription').value;
+    var priority = document.getElementById('priority').value;
+    var taskStatus = document.getElementById('taskStatus').value;
+    var plannedStartDate = document.getElementById('plannedStartDate').value;
+    var plannedCompletionDate = document.getElementById('plannedCompletionDate').value;
+    var actualStartDate = document.getElementById('actualStartDate').value;
+    var actualCompletionDate = document.getElementById('actualCompletionDate').value;
+    var activeStatus = document.getElementById('activeStatus').value;
+    var createdDate = document.getElementById('createdDate').value;
+    var updatedDate = document.getElementById('updatedDate').value;
+    var tr = document.createElement('tr');
+    var tdUserId = tr.appendChild(document.createElement('td'));
+    var tdTaskTitle = tr.appendChild(document.createElement('td'));
+    var tdTaskDescription = tr.appendChild(document.createElement('td'));
+    var tdPriority = tr.appendChild(document.createElement('td'));
+    var tdTaskStatus = tr.appendChild(document.createElement('td'));
+    var tdPlannedStartDate = tr.appendChild(document.createElement('td'));
+    var tdPlannedCompletionDate = tr.appendChild(document.createElement('td'));
+    var tdActualStartDate = tr.appendChild(document.createElement('td'));
+    var tdActualCompletionDate = tr.appendChild(document.createElement('td'));
+    var tdActiveStatus = tr.appendChild(document.createElement('td'));
+    var tdCreatedDate = tr.appendChild(document.createElement('td'));
+    var tdUpdatedDate = tr.appendChild(document.createElement('td'));
+    var tdActions = tr.appendChild(document.createElement('td'));
+
+    tdUserId.textContent = userId;
+    tdTaskTitle.textContent = taskTitle;
+    tdTaskDescription.textContent = taskDescription;
+    tdPriority.textContent = priority;
+    tdTaskStatus.textContent = taskStatus;
+    tdPlannedStartDate.textContent = plannedStartDate;
+    tdPlannedCompletionDate.textContent = plannedCompletionDate;
+    tdActualStartDate.textContent = actualStartDate;
+    tdActualCompletionDate.textContent = actualCompletionDate;
+    tdActiveStatus.textContent = activeStatus;
+    tdCreatedDate.textContent = createdDate;
+    tdUpdatedDate.textContent = updatedDate;
+
+    var deleteButton = document.createElement('input');
+    deleteButton.type = 'button';
+    deleteButton.value = 'Delete';
+    deleteButton.className = 'btn btn-danger btn-delete';
+    deleteButton.onclick = function() { deleteTask(tr); };
+
+    var updateButton = document.createElement('input');
+    updateButton.type = 'button';
+    updateButton.value = 'Update';
+    updateButton.className = 'btn btn-primary btn-update';
+    updateButton.onclick = function() { updateTask(tr); };
+
+    tdActions.appendChild(deleteButton);
+    tdActions.appendChild(updateButton);
+
+    document.getElementById("customers").appendChild(tr);
+    closeSidebar()
+}
+
+function deleteTask(row) {
+    row.parentNode.removeChild(row);
+}
+
+
+    function updateTask(row) {
+    // Function to update a task
+    var cells = row.getElementsByTagName("td");
+    var userId = cells[0].textContent;
+    var taskTitle = cells[1].textContent;
+    var taskDescription = cells[2].textContent;
+    var priority = cells[3].textContent;
+    var taskStatus = cells[4].textContent;
+    var plannedStartDate = cells[5].textContent;
+    var plannedCompletionDate = cells[6].textContent;
+    var actualStartDate = cells[7].textContent;
+    var actualCompletionDate = cells[8].textContent;
+    var activeStatus = cells[9].textContent;
+    var createdDate = cells[10].textContent;
+    var updatedDate = cells[11].textContent;
+
+    // Replace the row with input fields for editing
+    cells[0].innerHTML = '<input type="number" value="' + userId + '" class="form-control">';
+    cells[1].innerHTML = '<input type="text" value="' + taskTitle + '" class="form-control">';
+    cells[2].innerHTML = '<textarea class="form-control">' + taskDescription + '</textarea>';
+    cells[3].innerHTML = '<input type="text" value="' + priority + '" class="form-control">';
+    cells[4].innerHTML = '<input type="text" value="' + taskStatus + '" class="form-control">';
+    cells[5].innerHTML = '<input type="date" value="' + plannedStartDate + '" class="form-control">';
+    cells[6].innerHTML = '<input type="date" value="' + plannedCompletionDate + '" class="form-control">';
+    cells[7].innerHTML = '<input type="date" value="' + actualStartDate + '" class="form-control">';
+    cells[8].innerHTML = '<input type="date" value="' + actualCompletionDate + '" class="form-control">';
+    cells[9].innerHTML = '<input type="text" value="' + activeStatus + '" class="form-control">';
+    cells[10].innerHTML = '<input type="text" value="' + createdDate + '" class="form-control">';
+    cells[11].innerHTML = '<input type="text" value="' + updatedDate + '" class="form-control">';
+
+    // Replace the Update button with Save button
+    cells[12].innerHTML = '<input type="button" value="Save" onclick="saveTask(this.parentNode.parentNode)" class="btn btn-success">';
+    // cells[13].innerHTML = '<input type="button" value="Delete" onclick="deleteTask(this.parentNode.parentNode)" class="btn btn-primary">';
+
+}
+
+function saveTask(row) {
+    // Function to save the edited task
+    var cells = row.getElementsByTagName("td");
+    var userId = cells[0].getElementsByTagName("input")[0].value;
+    var taskTitle = cells[1].getElementsByTagName("input")[0].value;
+    var taskDescription = cells[2].getElementsByTagName("textarea")[0].value;
+    var priority = cells[3].getElementsByTagName("input")[0].value;
+    var taskStatus = cells[4].getElementsByTagName("input")[0].value;
+    var plannedStartDate = cells[5].getElementsByTagName("input")[0].value;
+    var plannedCompletionDate = cells[6].getElementsByTagName("input")[0].value;
+    var actualStartDate = cells[7].getElementsByTagName("input")[0].value;
+    var actualCompletionDate = cells[8].getElementsByTagName("input")[0].value;
+    var activeStatus = cells[9].getElementsByTagName("input")[0].value;
+    var createdDate = cells[10].getElementsByTagName("input")[0].value;
+    var updatedDate = cells[11].getElementsByTagName("input")[0].value;
+
+    // Replace the input fields with the updated task details
+    cells[0].textContent = userId;
+    cells[1].textContent = taskTitle;
+    cells[2].textContent = taskDescription;
+    cells[3].textContent = priority;
+    cells[4].textContent = taskStatus;
+    cells[5].textContent = plannedStartDate;
+    cells[6].textContent = plannedCompletionDate;
+    cells[7].textContent = actualStartDate;
+    cells[8].textContent = actualCompletionDate;
+    cells[9].textContent = activeStatus;
+    cells[10].textContent = createdDate;
+    cells[11].textContent = updatedDate;
+
+    // Replace the Save button with Update button
+    cells[12].innerHTML = '<input type="button" value="Update" class="btn btn-danger btn-update" onclick="updateTask(this.parentNode.parentNode)" ><input type="button" value="Delete" onclick="deleteTask(this.parentNode.parentNode)" class="btn btn-danger btn-delete">';
+}
+
+closeSidebar();
+</script>
+    <!-- Sidebar Popup -->
+    <div id="sidebar" class="sidebar">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeSidebar()">&times;</a>
+        <div class="sidebar-content">
+            <!-- Task form fields -->
+            <h2 style="margin-top: 20px;">Add Task</h2>
+                <form method="POST" class="taskForm"name="sample">
+                    <br>
+                    <div class="row">
+                        <div class="col">
+                            <label for="userId">User ID:</label>
+                            <input type="number" id="userId" name="userId" class="form-control">
+                        </div>
+                        <div class="col">
+                            <label for="taskTitle">Task Title:</label>
+                            <input type="text" id="taskTitle" name="taskTitle" class="form-control">
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col">
+                            <label for="taskDescription">Task Description:</label>
+                            <textarea id="taskDescription" name="taskDescription" class="form-control"></textarea>
+                        </div>
+                        <div class="col">
+                            <label for="priority">Priority:</label>
+                            <select id="priority" name="priority" class="form-control">
+                                <option value="low">Low</option>
+                                <option value="medium">Medium</option>
+                                <option value="high">High</option>
+                            </select>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col">
+                            <label for="taskStatus">Task Status:</label>
+                            <select id="taskStatus" name="taskStatus" class="form-control">
+                                <option value="notStarted">Not Started</option>
+                                <option value="inProgress">In Progress</option>
+                                <option value="completed">Completed</option>
+                            </select>
+                        </div>
+                        <div class="col">
+                            <label for="plannedStartDate">Planned Start Date:</label>
+                            <input type="date" id="plannedStartDate" name="plannedStartDate" class="form-control">
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col">
+                            <label for="plannedCompletionDate">Planned Completion Date:</label>
+                            <input type="date" id="plannedCompletionDate" name="plannedCompletionDate" class="form-control">
+                        </div>
+                        <div class="col">
+                            <label for="actualStartDate">Actual Start Date:</label>
+                            <input type="date" id="actualStartDate" name="actualStartDate" class="form-control">
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col">
+                            <label for="actualCompletionDate">Actual Completion Date:</label>
+                            <input type="date" id="actualCompletionDate" name="actualCompletionDate" class="form-control">
+                        </div>
+                        <div class="col">
+                            <label for="activeStatus">Active Status:</label>
+                            <select id="activeStatus" name="createdDate" class="form-control">
+                                <option value="active">Active</option>
+                                <option value="inactive">Inactive</option>
+                            </select>
+                        </div>
+                        <div class="col">
+                            <label for="createdDate">Created Date:</label>
+                            <input type="date" id="createdDate" name="createdDate" class="form-control">
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col">
+                            <label for="updatedDate">Updated Date:</label>
+                            <input type="date" id="updatedDate" name="updatedDate" class="form-control">
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col">
+                            <button type="button" class="btn btn-success" onclick="addTask()">ADD</button>
+                        </div>
+                    </div>
+                    <hr>
+                    </form>
+               
+                
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function openSidebar() {
+            document.getElementById("sidebar").style.width = "500px";
+        }
+
+        function closeSidebar() {
+            document.getElementById("sidebar").style.width = "0";
+        }
+
+        // function addTask() {
+            
+        //     closeSidebar(); // Close the sidebar after adding task
+        // }
+    </script>
+</body>
+</html>
+
+
+    

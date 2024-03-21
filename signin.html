@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OTMS LOGIN</title>
+    <link rel="stylesheet" href="signin.css">
+</head>
+<body>
+    <img src="Rectangle 35.png">    
+    <div id="edge_design"></div>
+    <div class="login_container">
+        <p class="heading"> Sign In</p>
+        <p class="sub_heading">Please enter your correct information </p>
+       
+<form id="loginForm"  method="post">
+    <p class="mail">Email</p>
+    <input type="email" id="email" name="email" required>
+    <p class="password">Password</p>
+    <input type="password" id="password" name="password" required>
+    
+</form>
+
+        
+        <div class="btn-group btn-block">
+            <button type="button" onclick="window.location.href='addTask.html'" id="signin_btn" class="btn btn-primary btn-block">Sign In</button>
+           <br> <p class="divider text-center mt-2"> Or </p>
+            <button type="button" onclick="window.location.href='signup.html'" id="signup_btn" class="btn btn-secondary btn-block">Sign Up</button>
+        </div>
+        
+        
+    </div>
+    <script src="Login.js"></script>
+</body>
+</html>

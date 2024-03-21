@@ -1,0 +1,191 @@
+/* Styles for header and search container */
+
+#design-top {
+    position: fixed;
+    width: 100%;
+    height: 5%;
+    margin-left: -8px;
+    margin-top: -8px;
+    background: #0b0d48;
+    border-bottom-right-radius: 10px;
+}
+
+#design-nav {
+    position: fixed;
+    width: 2%;
+    height: 100%;
+    margin-left: -8px;
+    margin-top: -10px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    background: #0b0d48;
+}
+
+
+#customers {
+    font-family: Arial, Helvetica, sans-serif;
+    border: 2px solid black;
+    
+    margin-left: 1.5%;
+  }
+  
+  #customers td, #customers th {
+    padding: 1px;
+    
+    text-align: center;
+    font-size:small;
+    
+}
+  
+  #customers tr:nth-child(even){background-color: #f2f2f2;}
+  
+  #customers tr:hover {background-color: #ddd;}
+  
+  #customers th {
+    padding: 12px 20px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color:#0b0d48;
+    color: white;
+    border:1px solid #fefefe;
+    
+  }
+  .container {
+    overflow: hidden;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between; /* To push items apart */
+    align-items: center;
+    position: relative; /* To vertically center items */
+}
+
+.heading {
+    /* Push "Task Management" to the left end */
+    margin-top: 50px;
+    margin-right: 20px;
+    margin-left: 10px; /* Increase margin for more space */
+}
+        .addTask{
+            padding: 10px 20px; /* Adjust padding for proper size */
+            background-color: #0b0d48; /* Dark blue color */
+            color: white; /* Text color */
+            border: none; /* No border */
+            border-radius: 5px; /* Rounded corners */
+            margin-top: 30px;
+          
+        }
+
+        .btn-delete {
+            background-color: #0b0d48;
+            color: white;
+            margin-top: 10px; /* Red color for Delete button */
+        }
+    
+        .btn-update {
+            background-color: #0b0d48;
+            color:white;
+            margin-top: 10px; /* Green color for Update button */
+        }
+        .ccontainer { 
+            height: 200px;
+            position: relative;
+            border: 3px solid green; 
+          }
+          
+          .vertical-center {
+            margin: 0;
+            position: absolute;
+            top: 50%;
+            -ms-transform: translateY(-50%);
+            transform: translateY(-50%);
+          }
+          td, th {
+            border: 1px solid black; /* Add border to all sides of each td and th */
+             /* Add padding for better spacing */
+        }
+        
+        /* Remove left border from first td and th in each row */
+        td:first-child,
+        th:first-child {
+            border-left: none;
+        }
+        
+        /* Remove right border from last td and th in each row */
+        td:last-child,
+        th:last-child {
+            border-right: none;
+        }
+        
+/* Styles for form popup */
+.sidebar {
+    width: 100%; /* Ensures the sidebar takes up the entire width of its container */
+    max-width: 600px; /* Sets the maximum width of the sidebar */
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    background-color: #f3f3f3;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 15px;
+    margin-top: 0px;
+}
+
+.form-control {
+    max-width: 800px; 
+    width: 100%;
+    padding: 12px 10px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 3px solid #ccc;
+    transition: border 0.5s;
+    outline: none;
+  }
+  
+  .form-control:focus {
+    border: 3px solid #555;
+  }
+  
+  textarea.form-control {
+    /* If you want to apply specific styles to textarea */
+    height: 100px; /* Example height */
+    resize: none; /* Disable resizing */
+  }
+  
+  
+  
+  .btn {
+    /* Styles for buttons */
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .btn-success {
+    /* Styles for success button */
+    background-color:#0b0d48 ;
+    color: white;
+  }
+  
+  .btn-success:hover {
+    background-color:#0b0d48;
+  }
+  .UpdateDeleteButton {
+    display: inline-block;
+}
+
+.UpdateDeleteButton { 
+    height: 200px;
+    position: relative;
+    border: 3px solid green; 
+  }
+  
+  .UpdateDeleteButton2 {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+  }
